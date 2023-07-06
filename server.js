@@ -8,35 +8,15 @@ fs = require('fs');
 require('dotenv/config');
 
 // ML Output Files
-let cosine_sim2 = "", indices = "", df2 = "";
+let cosine_sim2 = "", indices = "", movies = "";
 
 app.use(cors());
 app.use(morgan('dev'));
 
 app.use(express.static(path.join(process.cwd(), 'build')));
 
-const combineJsonFiles = (directoryPath, outputFile) => {
-	let combinedData = "";
-	let index = 1;
-	console.log(directoryPath);
-	console.log(outputFile);
-	let file = path.join(directoryPath, `batch_${index}.json`);
-	while(fs.existsSync(file)){
-		const data = require(file);
-		combinedData += data;
-		index++;
-		file = path.join(directoryPath, `batch_${index}.json`);
-	}
-	fs.writeFileSync(outputFile, combinedData);
-}
-
-
 const getLocalData = (fileName) => new Promise((resolve, reject) =>{
 	const file = path.join(process.cwd(), 'build', fileName);
-	if(!fs.existsSync(file + '.json')) combineJsonFiles(file, file + '.json');
-	while(!fs.existsSync(file + '.json')){
-		
-	}
 	fs.readFile(file + '.json', 'utf8', (err, data) => {
 		if (err) {
 			reject(new Error(`Error reading ${fileName}.json`));
@@ -59,7 +39,8 @@ app.get('/getMovies', (req, res) => {
 			return res.status(500).json({ error: 'Error reading movies data' });
 	  	}
 		try {
-			const movies = JSON.parse(data);
+			const dd = JSON.parse(data);
+			movies = dd;
 			return res.json(movies);
 	  	} catch (err) {
 			console.error(err);
@@ -70,48 +51,22 @@ app.get('/getMovies', (req, res) => {
 
 app.get('/getRecommendation/:movie', async (req, res) =>{
 	try {
-		if(cosine_sim2 == ""){
-			cosine_sim2 = await getLocalData('cosine_sim2');
-		}			
-
+		const title = req.params.movie;
 		if(indices == ""){
 			indices = await getLocalData('indices');
-		}			
-
-		if(df2 == ""){
-			df2 = await getLocalData('df2');
 		}
-		// const a = {
-		// 	name: 'cosine_sim2',
-		// 	content: JSON.stringify(cosine_sim2)
-		// }
-		// const b = {
-		// 	name: 'indices',
-		// 	content: JSON.stringify(indices)
-		// }
-		// const c = {
-		// 	name: 'df2',
-		// 	content: JSON.stringify(df2)
-		// }
-		// mlFiles.create(a)
-		// .then(() => console.log("created a"))
-		// .catch((err) => console.log(err, " in creating a"));
-		// mlFiles.create(b)
-		// .then(() => console.log("created b"))
-		// .catch((err) => console.log(err, " in creating b"));
-		// mlFiles.create(c)
-		// .then(() => console.log("created c"))
-		// .catch((err) => console.log(err, " in creating c"));
-		// const title = req.params.movie;
-		// if(!(title in indices)){
-		// 	return res.json({data:"", status: 500, msg: `Movie ${title} Not Found !`});
-		// }
 
-		// // Get the index of the movie that matches the title
-		const idx = indices[req.params.movie];
+		if(!(title in indices)){
+			return res.json({data:"", status: 500, msg: `Movie ${title} Not Found !`});
+		}
+
+		// Get the index of the movie that matches the title
+		const idx = indices[title];
+
+		cosine_sim2 = await getLocalData(`cosine_sim2/batch_${idx}`);
 
 		// Get the pairwise similarity scores of all movies with that movie
-		const simScores = cosine_sim2[idx];
+		const simScores = cosine_sim2;
 
 		// Create an array of objects with movie index and similarity score
 		const movieScores = simScores.map((score, index) => [score, index]);
@@ -126,7 +81,7 @@ app.get('/getRecommendation/:movie', async (req, res) =>{
 		const movieIndices = topScores.map((elem) => elem[1]);
 
 		// Get the titles of the top 10 most similar movies
-		const movieTitles = movieIndices.map((index) => df2['title'][index]);
+		const movieTitles = movieIndices.map((index) => movies[index]);
 
 		// Return the top 10 most similar movie titles
 		return res.json({data: movieTitles, msg: "Successful", status: 200});
