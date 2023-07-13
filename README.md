@@ -87,7 +87,3 @@ Contributions to the movie recommendation system are welcome! If you would like 
 5. Push your branch to your forked repository.
 
 6. Submit a pull request, describing your changes and their purpose.
-
-## License
-
-The movie recommendation system is open source and released under the [MIT License](LICENSE). Feel free to modify and use the code according to the terms of the license.
