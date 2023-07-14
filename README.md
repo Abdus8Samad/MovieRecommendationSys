@@ -21,7 +21,6 @@ The movie recommendation system is built to assist users in discovering new movi
 Once the application is running, you can use the movie recommendation system by following these steps:
 
 1. Search the Movie Title/Name.
-   
 3. System will recommend you top 10 movies related to your search.
 
 ## Data
@@ -38,11 +37,48 @@ The movie recommendation system employs various machine learning techniques to g
 
 - Demographic Filtering: Demographic filtering is a method of information filtering that considers demographic attributes, such as age, gender, location, or income, to tailor content or recommendations to specific user groups.
 
+  ![Demographic](https://github.com/Abdus8Samad/MovieRecommendationSys/blob/main/images/a.jpeg?raw=true)
+
 - Content-Based Filtering: This approach recommends movies based on their content features, such as genres, actors, directors, and plot summaries. It finds similarities between movies to suggest items with similar attributes.
+
+  ![content-based](https://github.com/Abdus8Samad/MovieRecommendationSys/blob/main/images/b.jpeg?raw=true)
 
 ## Algorithms
 
-- Demographic Filtering
+### 1. IMDB Weighted Average [Demographic Filtering]
+  
+The IMDB weighted average is a calculation used to determine the overall rating of a movie or TV show on the IMDb platform. It aims to provide a fair representation of the overall user rating by taking into account the number of votes received for the title.
+
+**Steps to follow:**
+
+1. Collect the number of votes (V) and the average rating (R) for the movie or TV show.
+1. Define a minimum number of votes (m) required for the title to be considered eligible for calculation. This threshold helps filter out titles with a small number of votes 
+1. that may not accurately reflect the overall quality.
+1. Calculate the weighted average (WR) using the formula:
+
+Formula: ```WR = ( (V / (V + m)) * R ) + ( (m / (V + m)) * C )```
+
+Here, C represents a predetermined constant value. It serves as a reference rating, which is typically set to the average rating across all titles on IMDb. The constant 
+helps maintain a consistent baseline and prevents bias towards titles with very few votes.
+
+### 2. Cosine Similarity Score [Content Based Filtering]
+
+Cosine similarity is a measure of similarity between two vectors in a multi-dimensional space. It determines the cosine of the angle between the vectors, which represents their similarity. 
+
+**Steps to follow:**
+
+1. **Convert the data** : Represent the data points or documents as numerical vectors. This is typically done using techniques like TF-IDF (Term Frequency-Inverse Document Frequency) or word embeddings, which capture the importance of words or terms in the documents.
+2. **Compute the dot product** : Take the dot product of the two vectors by multiplying the corresponding components and summing them. The dot product captures the similarity between the vectors based on their alignment in the vector space.
+3. **Calculate the magnitudes** : Calculate the magnitude or Euclidean norm of each vector. This is done by taking the square root of the sum of the squares of the vector's components.
+4. Compute the cosine similarity score: Divide the dot product by the product of the magnitudes of the two vectors. The resulting value is the cosine similarity score, ranging from -1 to 1. A score of 1 indicates that the vectors are identical, while a score of -1 indicates they are exactly opposite. A score of 0 suggests that the vectors are orthogonal or unrelated.
+
+The cosine similarity score is widely used in various applications, such as information retrieval, text mining, and recommendation systems. It allows for efficient and effective comparison of documents or data points based on their similarity in a high-dimensional space.
+
+Formula: ```cosine_similarity = (A · B) / (||A|| * ||B||)```
+
+
+![Cosine Similarity](https://user-images.githubusercontent.com/36665975/70401457-a7530680-1a55-11ea-9158-97d4e8515ca4.png)
+
 
 ## Future Improvements
 
