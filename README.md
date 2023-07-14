@@ -1,64 +1,48 @@
 # Movie Recommendation System
 
-This repository contains a movie recommendation system created using machine learning techniques. The system leverages a dataset of movies and user preferences to provide personalized movie recommendations to users. The recommendations are generated based on similarities between users or movies using various algorithms.
+The proliferation of data collection has ushered in a new era of information, prompting the emergence of Recommendation Systems. These systems play a crucial role in information filtering, enhancing search result quality, and providing users with more relevant items based on their search queries and browsing history.
+
+Recommendation Systems employ algorithms to forecast user ratings or preferences for specific items. Nearly every prominent technology company has implemented such systems in various capacities. For instance, Amazon employs them to suggest products to customers, YouTube relies on them to determine the next video to play in autoplay, and Facebook employs them to offer page recommendations and suggest people to follow. Additionally, companies like Netflix and Spotify heavily rely on the efficacy of their recommendation engines for business growth and success.
 
 ## Table of Contents
 
 - [Introduction](#introduction)
-- [Installation](#installation)
 - [Usage](#usage)
 - [Data](#data)
-- [Algorithms](#algorithms)
-- [Evaluation](#evaluation)
 - [Future Improvements](#future-improvements)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Introduction
 
 The movie recommendation system is built to assist users in discovering new movies based on their preferences and the preferences of other users with similar tastes. By analyzing historical data, the system learns patterns and makes predictions to suggest movies that users are likely to enjoy. This README provides an overview of the system, its installation instructions, and details about the underlying algorithms and evaluation metrics.
 
-## Installation
-
 ## Usage
 
 Once the application is running, you can use the movie recommendation system by following these steps:
 
-1. Create an account or log in with your existing credentials.
-
-2. Provide your movie preferences, either by rating movies or selecting preferred genres.
-
-3. The system will generate personalized movie recommendations based on your preferences.
-
-4. Explore the recommended movies and interact with the system to discover new films.
+1. Search the Movie Title/Name.
+   
+3. System will recommend you top 10 movies related to your search.
 
 ## Data
 
-The movie recommendation system relies on a dataset of movies and user preferences. The dataset contains information such as movie titles, genres, release dates, and user ratings. The data is used for training the recommendation algorithms and generating personalized recommendations.
+The movie recommendation system relies on a dataset of movies and user preferences. The dataset contains information such as movie titles, genres, release dates, and user ratings. The data is used for training the recommendation system and used Machine Learning Techniques for evaluation.
 
-## Algorithms
+Dataset Used:
+- [TMDB 5000 Movie Dataset](https://www.kaggle.com/datasets/tmdb/tmdb-movie-metadata)
+- [The Movies Dataset](https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset)
 
-The movie recommendation system employs various machine learning algorithms to generate accurate and personalized recommendations. Some of the algorithms used include:
+## Basis of System
 
-- Collaborative Filtering: This technique analyzes similarities between users' preferences and recommends movies based on the preferences of similar users.
+The movie recommendation system employs various machine learning techniques to generate accurate recommendations. Some of the algorithms used include:
+
+- Demographic Filtering: Demographic filtering is a method of information filtering that considers demographic attributes, such as age, gender, location, or income, to tailor content or recommendations to specific user groups.
 
 - Content-Based Filtering: This approach recommends movies based on their content features, such as genres, actors, directors, and plot summaries. It finds similarities between movies to suggest items with similar attributes.
 
-- Matrix Factorization: This algorithm factorizes the user-movie preference matrix to discover latent factors that can predict user preferences accurately.
+## Algorithms
 
-The system combines these algorithms to provide robust and diverse movie recommendations.
-
-## Evaluation
-
-To measure the performance and effectiveness of the recommendation system, several evaluation metrics are used, such as:
-
-- Mean Average Precision (MAP): Evaluates the precision of the top-K recommended movies.
-
-- Recall: Measures the proportion of relevant movies that are recommended.
-
-- Coverage: Indicates the diversity of recommendations, ensuring various genres and types of movies are suggested.
-
-The evaluation metrics help assess the system's accuracy, relevance, and coverage, providing insights into its performance.
+- Demographic Filtering
 
 ## Future Improvements
 
@@ -71,6 +55,8 @@ The movie recommendation system can be enhanced in several ways:
 - Enhancing the user interface and user experience to make the system more intuitive and user-friendly.
 
 - Integrating external data sources, such as user reviews and social media data, to gather more information and improve the recommendation quality.
+
+- Adding more search queries like Genre, Director Name & Actors name (currently works only on movies name).
 
 ## Contributing
 
