@@ -9,6 +9,8 @@ Recommendation Systems employ algorithms to forecast user ratings or preferences
 - [Introduction](#introduction)
 - [Usage](#usage)
 - [Data](#data)
+- [Basis of System](#basis-of-system)
+- [Algorithms](#algorithms)
 - [Future Improvements](#future-improvements)
 - [Contributing](#contributing)
 
@@ -20,8 +22,16 @@ The movie recommendation system is built to assist users in discovering new movi
 
 Once the application is running, you can use the movie recommendation system by following these steps:
 
+Website
+![](https://github.com/Abdus8Samad/MovieRecommendationSys/blob/main/images/2.jpg?raw=true)
+
 1. Search the Movie Title/Name.
+
+![](https://github.com/Abdus8Samad/MovieRecommendationSys/blob/main/images/1.jpg?raw=true)
+   
 3. System will recommend you top 10 movies related to your search.
+
+![](https://github.com/Abdus8Samad/MovieRecommendationSys/blob/main/images/3.jpg?raw=true)
 
 ## Data
 
